@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
+import Link from "next/link";
+import { influencers } from "@/shared/mockData";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -62,6 +64,26 @@ export default function Home() {
             Read our docs
           </a>
         </div>
+
+        <section className="w-full max-w-xl mt-6">
+          <h2 className="text-xl font-semibold mb-3">Featured influencers</h2>
+          <ul className="divide-y border rounded">
+            {influencers.map((i) => (
+              <li key={i.id} className="p-3 flex items-center justify-between">
+                <div>
+                  <div className="font-medium">{i.name}</div>
+                  <div className="text-sm text-gray-600">@{i.handle}</div>
+                </div>
+                <Link
+                  className="text-blue-600 underline text-sm"
+                  href={`/influencer/${i.handle}`}
+                >
+                  View map
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
       </main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
         <a
